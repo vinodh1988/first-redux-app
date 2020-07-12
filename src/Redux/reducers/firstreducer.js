@@ -23,10 +23,18 @@ export const secondReducer = (state={message:"World is too small!!!"},action)=>{
     switch(action.type){
 
         case "SECOND_ACTION":
-                       return {message: action.data}  
+                       return {message: action.data};
         default:
                        return state;
     
     }
 }
 
+export const peopleReducer = (state= {people:[]},action)=>{
+    switch(action.type){
+        case "PEOPLE_ACTION":
+                      return {people: action.data};
+        default:
+                      return state;
+    }
+}

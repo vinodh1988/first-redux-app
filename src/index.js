@@ -3,13 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import  {AppConnected} from './Redux/connectedComponents/AppConnected'
 import {Provider} from "react-redux";
-import {createStore} from 'redux';
+import thunk from 'redux-thunk'
+import {asyncPeople} from './Redux/actions/peopleAction'
+import {createStore,applyMiddleware} from 'redux';
 import {appstate} from  './Redux/reducers/combine'
 import * as serviceWorker from './serviceWorker';
 
 
-const store=createStore(appstate)
 
+const store=createStore(appstate,applyMiddleware(thunk))
+
+store.dispatch(asyncPeople());
 
 ReactDOM.render(
   <Provider store={store}>

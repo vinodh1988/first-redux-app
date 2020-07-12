@@ -1,11 +1,12 @@
 import {combineReducers}   from 'redux'
-import {firstReducer,secondReducer} from './firstreducer'
+import {firstReducer,secondReducer, peopleReducer} from './firstreducer'
 
 
 export const appstate = combineReducers(
     {
         first: firstReducer,
-        second: secondReducer
+        second: secondReducer,
+        peopledata: peopleReducer
     }
 )
 
