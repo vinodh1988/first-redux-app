@@ -35,3 +35,10 @@ export const addPerson = (person) =>{
         }
     }
 }
+// This is for SAGA FLOW
+export const addNewPerson = (person) =>{
+    return {
+        type: "NEW_PERSON",
+        data: person
+    }
+}

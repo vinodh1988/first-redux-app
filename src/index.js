@@ -3,17 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import  {AppConnected} from './Redux/connectedComponents/AppConnected'
 import {Provider} from "react-redux";
-import thunk from 'redux-thunk'
-import {asyncPeople} from './Redux/actions/peopleAction'
+//import thunk from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga';
 import {createStore,applyMiddleware} from 'redux';
 import {appstate} from  './Redux/reducers/combine'
 import * as serviceWorker from './serviceWorker';
+import { rootSaga } from './Redux/saga/root';
 
+const sagaMiddleware = createSagaMiddleware();
 
+const store=createStore(appstate,applyMiddleware(sagaMiddleware))
 
-const store=createStore(appstate,applyMiddleware(thunk))
+sagaMiddleware.run(rootSaga);
 
-store.dispatch(asyncPeople());
+store.dispatch({type:"PEOPLE_READ_ACTION"});
 
 ReactDOM.render(
   <Provider store={store}>
